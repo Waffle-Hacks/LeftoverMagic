@@ -49,7 +49,7 @@ const NavBar = () => {
             </a>
             <div className='container'>
                 <Button variant='outlined' sx={[ btnTheme.basic, btnTheme.outlined ]} onClick={handleRegister}>Register</Button>
-                <Button variant='contained' sx={[ btnTheme.basic, btnTheme.contained ]}><Link to="/login">Login</Link></Button>
+                <Button variant='contained' sx={[ btnTheme.basic, btnTheme.contained ]}><Link to="/login" style={{ textDecoration: 'none', color: 'inherit'}}>Login</Link></Button>
             </div>
         </Toolbar>
     </AppBar>
