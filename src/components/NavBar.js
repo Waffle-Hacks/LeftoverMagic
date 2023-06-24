@@ -1,5 +1,6 @@
 // import React from 'react';
 import { AppBar, Toolbar, Button } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 const NavBar = () => {
     const barTheme = {
@@ -40,7 +41,7 @@ const NavBar = () => {
             </a>
             <div className='container'>
                 <Button variant='outlined' sx={[ btnTheme.basic, btnTheme.outlined ]}>Register</Button>
-                <Button variant='contained' sx={[ btnTheme.basic, btnTheme.contained ]}>Login</Button>
+                <Button variant='contained' sx={[ btnTheme.basic, btnTheme.contained ]}><Link to="/login">Login</Link></Button>
             </div>
         </Toolbar>
     </AppBar>

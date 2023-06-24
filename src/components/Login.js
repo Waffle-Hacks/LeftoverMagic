@@ -9,7 +9,7 @@ const Login= () => {
     return(
         <div className="loginForm" style={{
             backgroundColor: 'var(--primary-color)',
-            padding: ' 50 px',
+            padding: '50 px',
             borderRadius: '5px',
             boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
             maxWidth: '400px',
