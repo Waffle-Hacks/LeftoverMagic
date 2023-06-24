@@ -4,6 +4,7 @@ import './style/App.css';
 import './style/Components.css';
 import Navbar from './components/NavBar';
 import HomeScreen from './components/HomeScreen';
+import Login from './components/Login';
 
 function App() {
   return (
@@ -14,7 +15,8 @@ function App() {
             <Route exact path="/" element={<HomeScreen/>}/>
             {/* <Route path="/inventory" exact component={InventoryScreen}/>
             <Route path="/selection" exact component={SelectionScreen}/>
-            <Route path="/result" exact component={ResultScreen}/> */}
+            <Route path="/result" exact component={ResultScreen}/>*/}
+            <Route exact path = "/login" element={<Login/>}/>
         </Routes>
       </div>
     </BrowserRouter>
