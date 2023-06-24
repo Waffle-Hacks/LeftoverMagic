@@ -20,7 +20,7 @@ const Hero = () => {
     }
 
     return (
-        <div className='homeSubContainer'>
+        <div className='subContainer'>
             <div className='container'>
                 <div id='introduction'>
                     <Typography variant='h1' fontWeight="bold" sx={fontTheme}> Reduce Food and <span style={{ color: 'var(--primary-color)' }}>Save the Earth!</span></Typography>
