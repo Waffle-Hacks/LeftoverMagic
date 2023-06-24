@@ -17,10 +17,10 @@ function App() {
           <Routes>
               <Route exact path="/" element={<HomeScreen/>}/>
               <Route exact path="/register" element={<Register/>}/>
+              <Route exact path = "/login" element={<Login/>}/>
               {/* <Route path="/inventory" exact component={InventoryScreen}/>
               <Route path="/selection" exact component={SelectionScreen}/>
               <Route path="/result" exact component={ResultScreen}/>*/}
-              <Route exact path = "/login" element={<Login/>}/>
           </Routes>
         </div>
       </AuthContextProvider>

@@ -118,7 +118,7 @@ const Register = () => {
                         <span style={{ marginRight: "2.5%" }}>
                             Already have an account?
                         </span>
-                        <Link href="/login" variant="body2">
+                        <Link to="/login" variant="body2">
                             Login Here
                         </Link>
                     </div>
