@@ -1,7 +1,7 @@
 import Hero from './Hero';
 import DescriptionBox from './DescriptionBox';
 
-import { Typography } from '@mui/material';
+import { Typography} from '@mui/material';
 
 const HomeScreen = () => {
     const fontTheme = {

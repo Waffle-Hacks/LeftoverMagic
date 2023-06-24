@@ -10,7 +10,7 @@ const Hero = () => {
     const btnTheme = {
         fontSize: '25px',
         borderRadius: '75px',
-        padding: '1% 40%',
+        padding: '1% 40%',  
         margin: '4% 0',
         textTransform: 'capitalize',
         backgroundColor: 'var(--primary-color)',
@@ -37,7 +37,6 @@ const Hero = () => {
                 <div style={{ backgroundColor: 'var(--primary-hover-color)', minWidth: '37.5vw', color: 'white'}}>
                     going to be a picture
                 </div>
-                {/* <img src='' alt='food picture'/> */}
             </div>
         </div>
     )
