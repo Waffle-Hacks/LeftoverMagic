@@ -1,4 +1,5 @@
 import { Typography, Button } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
     const fontTheme = {
@@ -31,7 +32,7 @@ const Hero = () => {
                         LeftoverMagic encourages sustainable consumption habits, minimizes food waste, and promotes mindful cooking and
                         grocery shopping practices.
                     </Typography>
-                    <Button variant='contained' sx={ btnTheme }>Start Now</Button>
+                    <Link to="/register" style={{ textDecoration: 'none', color: 'inherit'}}><Button variant='contained' sx={ btnTheme }>Start Now</Button></Link>
                 </div>
                 <div style={{ backgroundColor: 'var(--primary-hover-color)', minWidth: '37.5vw', color: 'white'}}>
                     going to be a picture
