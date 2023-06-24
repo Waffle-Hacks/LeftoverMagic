@@ -54,3 +54,23 @@
     padding: 2.5vw;
     margin: 2.5%;
 }
+
+.headerBtn {
+  display: flex;
+  margin-top: auto;
+  margin-left: auto;
+
+}
+
+.ingredientHeader{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.ingredientTitle{
+    width: 30%;
+    margin-right: auto;
+    margin: 20px 5px;
+}
