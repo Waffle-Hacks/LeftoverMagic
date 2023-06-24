@@ -1,0 +1,36 @@
+#logo{
+    width: 158px;
+    height: auto;
+}
+
+.container{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.homeContainer{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.homeSubContainer{
+    width: 90vw;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+#introduction{
+    width: 50vw;
+    text-align: left;
+}
+
+#divider{
+    margin-top: 5%;
+    min-width: 90vw;
+    border-top: 5px solid var(--secondary-color);
+    border-radius: 5px;
+}
