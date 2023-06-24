@@ -1,7 +1,7 @@
 // import React from 'react';
 import { AppBar, Toolbar, Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 
 const NavBar = () => {
     const navigate = useNavigate();
@@ -42,6 +42,11 @@ const NavBar = () => {
         navigate('/register');
     }
 
+    function handleLogin(event) {
+        event.stopPropagation();
+        navigate('/login');
+    }
+
     return <AppBar sx={ barTheme.appbar }>
         <Toolbar sx={ barTheme.toolbar }>
             <a href="/">
@@ -49,7 +54,7 @@ const NavBar = () => {
             </a>
             <div className='container'>
                 <Button variant='outlined' sx={[ btnTheme.basic, btnTheme.outlined ]} onClick={handleRegister}>Register</Button>
-                <Link to="/login" style={{ textDecoration: 'none', color: 'inherit'}}><Button variant='contained' sx={[ btnTheme.basic, btnTheme.contained ]}>Login</Button></Link>
+                <Button variant='contained' sx={[ btnTheme.basic, btnTheme.contained ]} onClick={handleLogin}>Login</Button>
             </div>
         </Toolbar>
     </AppBar>
