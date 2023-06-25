@@ -3,21 +3,14 @@ import { Link } from 'react-router-dom';
 import { Typography, TextField, Button } from "@mui/material";
 
 import { AuthContext } from '../auth';
+import UserInput from './UserInput';
 
 const Register = () => {
     const { auth } = useContext(AuthContext);
 
-    const [emailOrUsername, setEmailOrUsername] = useState("");
-    const [password, setPassword] = useState("");
-
     const fontTheme = {
         color: 'black',
         margin: '2.5%'
-    }
-
-    const textFieldTheme = {
-        width: "60vh",
-        marginTop: "2.5%"
     }
 
     const btnTheme = {
@@ -34,9 +27,12 @@ const Register = () => {
         }
     }
 
-    function handleEmailOrUserNameUpdate(event){
+    const [emailOrPw, setEmailOrPw] = useState("");
+    const [password, setPassword] = useState("");
+
+    function handleEmailOrPwUpdate(event){
         event.stopPropagation();
-        setEmailOrUsername(event.target.value);
+        setEmailOrPw(event.target.value);
     }
 
     function handlePasswordUpdate(event){
@@ -46,16 +42,18 @@ const Register = () => {
 
     const handleSubmit = (event) => {
         event.stopPropagation();
-        if(emailOrUsername.length === 0 || password.length === 0){
+        if(emailOrPw.length === 0 || password.length === 0){
             alert('Warning: cannot leave textfield empty.');
         }
 
         if(auth){
             console.log('now login user');
-            // auth.loginUser(
-            //     emailOrUsername,
-            //     password
-            // );
+            auth.loginUser(
+                emailOrPw,
+                password
+            );
+            setEmailOrPw('');
+            setPassword('');
         }
     }
     
@@ -64,20 +62,9 @@ const Register = () => {
             <Typography variant='h1' fontWeight="bold" sx={fontTheme}>Login</Typography>
             <div>
                 <div className="columnContainer">
-                    <TextField
-                        variant='filled'
-                        placeholder='Email / Username'
-                        sx={ textFieldTheme }
-                        inputProps={{style: {fontSize: 20}}}
-                        onChange={handleEmailOrUserNameUpdate}
-                    />
-                    <TextField
-                        variant='filled'
-                        placeholder='Password'
-                        sx={ textFieldTheme }
-                        inputProps={{style: {fontSize: 20}}}
-                        onChange={handlePasswordUpdate}
-                    />
+                    <UserInput placeholder='Email' handleUpdate={handleEmailOrPwUpdate} value={emailOrPw} />
+                    <UserInput placeholder='Password' handleUpdate={handlePasswordUpdate} value={password} />
+
                     <div style={ {width: '30vw', marginTop: "2.5%" }}>
                         <span style={{ marginRight: "2.5%" }}>
                             Doesn't have an account?
