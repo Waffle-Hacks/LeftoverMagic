@@ -3,23 +3,14 @@ import { Link } from 'react-router-dom';
 import { Typography, TextField, Button } from "@mui/material";
 
 import { AuthContext } from '../auth';
+import UserInput from './UserInput';
 
 const Register = () => {
     const { auth } = useContext(AuthContext);
 
-    const [username, setUsername] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
-
     const fontTheme = {
         color: 'black',
         margin: '2.5%'
-    }
-
-    const textFieldTheme = {
-        width: "60vh",
-        marginTop: "2.5%"
     }
 
     const btnTheme = {
@@ -35,6 +26,11 @@ const Register = () => {
             color: 'white'
         }
     }
+
+    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
 
     function handleUsernameUpdate(event){
         event.stopPropagation();
@@ -58,26 +54,19 @@ const Register = () => {
 
     const handleSubmit = (event) => {
         event.stopPropagation();
-        if(username.length === 0 || email.length === 0 || password.length === 0){
-            alert('Warning: cannot leave textfield empty.');
-        }
-        else if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
-            alert('Warning: please enter valid email.');
-        }
-        else if(password.length < 8){
-            alert('Warning: password length should be at least 8.');
-        }
-        else if(password !== confirmPassword){
-            alert('Warning: password unmatched.');
-        }
-
         if(auth){
             console.log('now register user');
             auth.registerUser(
                 username,
                 email,
-                password
+                password,
+                confirmPassword
             );
+
+            setUsername('');
+            setEmail('');
+            setPassword('');
+            setConfirmPassword('');
         }
     }
     
@@ -86,34 +75,11 @@ const Register = () => {
             <Typography variant='h1' fontWeight="bold" sx={fontTheme}>Register</Typography>
             <div>
                 <div className="columnContainer">
-                    <TextField
-                        variant='filled'
-                        placeholder='Username'
-                        sx={ textFieldTheme }
-                        inputProps={{style: {fontSize: 20}}}
-                        onChange={handleUsernameUpdate}
-                    />
-                    <TextField
-                        variant='filled'
-                        placeholder='Email'
-                        sx={ textFieldTheme }
-                        inputProps={{style: {fontSize: 20}}}
-                        onChange={handleEmailUpdate}
-                    />
-                    <TextField
-                        variant='filled'
-                        placeholder='Password'
-                        sx={ textFieldTheme }
-                        inputProps={{style: {fontSize: 20}}}
-                        onChange={handlePasswordUpdate}
-                    />
-                    <TextField
-                        variant='filled'
-                        placeholder='Confirm password'
-                        sx={ textFieldTheme }
-                        inputProps={{style: {fontSize: 20}}}
-                        onChange={handleConfirmPasswordUpdate}
-                    />
+                    <UserInput placeholder='Username' handleUpdate={handleUsernameUpdate} value={username} />
+                    <UserInput placeholder='Email' handleUpdate={handleEmailUpdate} value={email} />
+                    <UserInput placeholder='Password' handleUpdate={handlePasswordUpdate} value={password} />
+                    <UserInput placeholder='Confirm password' handleUpdate={handleConfirmPasswordUpdate} value={confirmPassword} />
+                    
                     <div style={ {width: '30vw', marginTop: "2.5%" }}>
                         <span style={{ marginRight: "2.5%" }}>
                             Already have an account?

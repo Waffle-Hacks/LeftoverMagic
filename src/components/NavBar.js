@@ -1,10 +1,12 @@
-// import React from 'react';
+import React, { useContext } from 'react';
 import { AppBar, Toolbar, Button } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
-//import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+
+import { AuthContext } from '../auth';
 
 const NavBar = () => {
     const navigate = useNavigate();
+    const { auth } = useContext(AuthContext);
 
     const barTheme = {
         appbar: {
@@ -47,14 +49,33 @@ const NavBar = () => {
         navigate('/login');
     }
 
+    function handleLogout(event){
+        event.stopPropagation();
+        if(auth){
+            console.log('now login user');
+            auth.logoutUser();
+        }
+    }
+
+    let btnGrp = '';
+
+    if(auth && auth.user && auth.loggedIn){
+        btnGrp = <Button variant='outlined' sx={[ btnTheme.basic, btnTheme.outlined ]} onClick={handleLogout}>Logout</Button>;
+    }
+    else{
+        btnGrp = <>
+            <Button variant='outlined' sx={[ btnTheme.basic, btnTheme.outlined ]} onClick={handleRegister}>Register</Button>
+            <Button variant='contained' sx={[ btnTheme.basic, btnTheme.contained ]} onClick={handleLogin}>Login</Button>
+        </>;
+    }
+
     return <AppBar sx={ barTheme.appbar }>
         <Toolbar sx={ barTheme.toolbar }>
-            <a href="/">
+            <Link to="/">
                 <img id='logo' src='/assets/logo_horizontal.png' alt='LeftoverMagic logo'/>
-            </a>
+            </Link>
             <div className='container'>
-                <Button variant='outlined' sx={[ btnTheme.basic, btnTheme.outlined ]} onClick={handleRegister}>Register</Button>
-                <Button variant='contained' sx={[ btnTheme.basic, btnTheme.contained ]} onClick={handleLogin}>Login</Button>
+                { btnGrp }
             </div>
         </Toolbar>
     </AppBar>
