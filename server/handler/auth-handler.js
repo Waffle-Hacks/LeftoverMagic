@@ -3,12 +3,7 @@ const User = require('../schema/user')
 const bcrypt = require('bcryptjs')
 
 stayLoggedIn = async (req, res) => {
-    console.log("stayLoggedIn");
-    
     try {
-        if(req && req.body)
-            console.log(req.body);
-
         let userId = auth.verifyUser(req);
         if (!userId) {
             console.log("userId does not exist");
@@ -20,7 +15,6 @@ stayLoggedIn = async (req, res) => {
         }
 
         const loggedInUser = await User.findOne({ _id: userId });
-        console.log("loggedInUser: " + loggedInUser);
 
         return res.status(200).json({
             loggedIn: true,
