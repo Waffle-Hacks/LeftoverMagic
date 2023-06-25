@@ -39,6 +39,11 @@ const Ingredients = () => {
                         <Button variant='contained' sx={[ btnTheme.basic, btnTheme.contained ]}>Sort By</Button>
                     </div>
             </div>
+            
+            <div className='ingredientRow'>
+                <span className='ingredientName'>Ingredient name</span>
+                <Button className='deleteIngredient'>Delete</Button>
+            </div>
         </div>
     )
 }
