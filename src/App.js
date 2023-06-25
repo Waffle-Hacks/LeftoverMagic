@@ -3,11 +3,13 @@ import { AuthContextProvider } from './auth';
 
 import './style/App.css';
 import './style/Components.css';
+
 import Navbar from './components/NavBar';
 import HomeScreen from './components/HomeScreen';
 import Login from './components/Login';
 import Register from './components/Register';
-import Ingredients from './components/Ingredients';
+import Inventory from './components/Inventory';
+import SelectionScreen from './components/SelectionScreen';
 
 function App() {
   return (
@@ -19,10 +21,9 @@ function App() {
               <Route exact path="/" element={<HomeScreen/>}/>
               <Route exact path="/register" element={<Register/>}/>
               <Route exact path = "/login" element={<Login/>}/>
-              <Route exact path = "/ingredients" element={<Ingredients/>}/>
-              {/* <Route path="/inventory" exact component={InventoryScreen}/>
+              <Route exact path = "/inventory" element={<Inventory/>}/>
               <Route path="/selection" exact component={SelectionScreen}/>
-              <Route path="/result" exact component={ResultScreen}/>*/}
+              {/* <Route path="/result" exact component={ResultScreen}/>*/}
           </Routes>
         </div>
       </AuthContextProvider>

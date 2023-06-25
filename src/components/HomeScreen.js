@@ -1,6 +1,6 @@
 import Hero from './Hero';
 import { AuthContext } from '../auth';
-import Ingredients from './Ingredients';
+import Inventory from './Inventory';
 import DescriptionBox from './DescriptionBox';
 
 import React, { useContext } from 'react';
@@ -14,15 +14,12 @@ const HomeScreen = () => {
         margin: '2.5%'
     }
 
-    const titles = ["Food Invetory", "Recipe Generator"]
+    const titles = ["Food inventory", "Recipe Generator"]
     const descriptions = ["Keep track of food items you have at house", "Generate recipes based on your food inventory & preference!"]
 
     let content = '';
     if(auth && auth.user && auth.loggedIn){
-        content = <div className='subContainer'>
-            Hello
-            {/* <Ingredients/> */}
-        </div>
+        content = <Inventory/>
     }
     else{
         content = <div className='subContainer'>
