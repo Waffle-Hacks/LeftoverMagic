@@ -137,7 +137,7 @@ loginUser = async (req, res) => {
     try {
         const { emailOrPw, password } = req.body;
 
-        if(!emailOrPw || !password) {
+        if(!emailOrPw || !password || emailOrPw.length < 1 || password.length < 1) {
             return res
                 .status(400)
                 .json({errorMessage: "Please enter all required fields." });

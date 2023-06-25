@@ -3,10 +3,12 @@ import { AppBar, Toolbar, Button } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { AuthContext } from '../auth';
+import { UserContext } from '../user';
 
 const NavBar = () => {
     const navigate = useNavigate();
     const { auth } = useContext(AuthContext);
+    const { user } = useContext(UserContext);
 
     const barTheme = {
         appbar: {
@@ -56,6 +58,9 @@ const NavBar = () => {
 
     function handleRecipes(event) {
         event.stopPropagation();
+        if(user){
+            user.clearSelection();
+        }
         navigate('/selection');
     }
 

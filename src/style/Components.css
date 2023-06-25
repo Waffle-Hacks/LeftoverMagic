@@ -72,17 +72,33 @@
     width: 50vw;
 }
 
+.ingredientRows{
+    margin-top: 2.5vh;
+}
+
 .ingredientRow{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #f1f1f1;
-    padding: 10px;
-    margin-bottom: 10px;
+    
+    width: 75vw;
+    padding: 1vh 2.5vw;
+
+    border-style: solid;
+    border-radius: 5px;
+    border-color: gray;
+    margin: 10px 0;
 }
 
-.ingredientRows{
-    margin-top: 2.5vh;
+.ingredientName{
+    height: 3vh;
+    padding-left: 3vh;
+    border-left: 5px solid var(--primary-color);
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
 #emptyInventory{
@@ -102,7 +118,7 @@
 
 .modal{
     width: 50vw;
-    height: 50vh;
+    height: 42.5vh;
     background-color: white;
     border-radius: 75px;
     box-shadow: 24;
@@ -116,4 +132,22 @@
 #modal-item{
     align-items: center;
     width: 40vw;
+}
+
+.flexContainer{
+    min-width: 70vw;
+    max-width: 70vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+#checkbox-container{
+    align-items: center;
+    flex-basis: 20%;
+    max-width: 20%;
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 5%;
 }

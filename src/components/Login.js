@@ -44,7 +44,7 @@ const Register = () => {
 
     const handleSubmit = (event) => {
         event.stopPropagation();
-        if(emailOrUserName.length === 0 || password.length === 0){
+        if(emailOrUserName === null || password === null || emailOrUserName.length === 0 || password.length === 0){
             alert('Warning: cannot leave textfield empty.');
         }
 

@@ -3,7 +3,7 @@ import { AuthContext } from '../auth';
 import Inventory from './Inventory';
 import DescriptionBox from './DescriptionBox';
 
-import React, { useContext } from 'react';
+import React, { useContext  } from 'react';
 import { Typography } from '@mui/material';
 
 const HomeScreen = () => {

@@ -1,9 +1,10 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { AuthContextProvider } from './auth';
-import { ControllerContextProvider } from './controller';
+import { UserContextProvider } from './user';
 
 import './style/App.css';
 import './style/Components.css';
+import './style/recipe.module.css';
 
 import Navbar from './components/NavBar';
 import HomeScreen from './components/HomeScreen';
@@ -11,12 +12,13 @@ import Login from './components/Login';
 import Register from './components/Register';
 import Inventory from './components/Inventory';
 import SelectionScreen from './components/SelectionScreen';
+import RecipeScreen from './components/RecipeScreen';
 
 function App() {
   return (
     <Router>
       <AuthContextProvider>
-        <ControllerContextProvider>
+        <UserContextProvider>
           <div className="App">
             <Navbar/>
             <Routes>
@@ -24,11 +26,11 @@ function App() {
                 <Route exact path="/register" element={<Register/>}/>
                 <Route exact path = "/login" element={<Login/>}/>
                 <Route exact path = "/inventory" element={<Inventory/>}/>
-                <Route path="/selection" exact component={SelectionScreen}/>
-                {/* <Route path="/result" exact component={ResultScreen}/>*/}
+                <Route exact path="/selection" element={<SelectionScreen/>}/>
+                <Route exact path="/result" element={<RecipeScreen/>}/>
             </Routes>
           </div>
-        </ControllerContextProvider>
+        </UserContextProvider>
       </AuthContextProvider>
     </Router>
   );

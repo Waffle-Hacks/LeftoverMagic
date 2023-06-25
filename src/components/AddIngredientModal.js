@@ -1,15 +1,37 @@
 import React, { useContext, useState } from 'react';
-import { ControllerContext } from '../controller';
+import { UserContext } from '../user';
 import UserInput from './UserInput';
 
-import { Modal, Button, Typography, TextField } from '@mui/material';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import { Modal, Button, Typography } from '@mui/material';
 
 export default function AddIngredientModal() {
     const [ingredient, setIngredient] = useState('');
-    const [selectedDate, setSelectedDate] = useState(null);
+    const [date, setDate] = useState(new Date());
 
-    const { controller } = useContext(ControllerContext);
+    const { user } = useContext(UserContext);
 
+    const btnTheme = {
+        basic: {
+            fontSize: '30px',
+            padding: '0 5vw',
+            margin: '0 5%',
+            borderRadius: '75px',
+            textTransform: 'capitalize',
+            '&.MuiButton-root:hover':{
+                backgroundColor: 'var(--primary-hover-color)',
+                color: 'white'
+            }
+        },
+        outlined: {
+            color: 'var(--primary-color)',
+            borderColor: 'var(--primary-color)'
+        }, 
+        contained:{
+            backgroundColor: 'var(--primary-color)'
+        }
+    }
     
     function handleIngredientUpdate(event){
         event.stopPropagation();
@@ -18,24 +40,22 @@ export default function AddIngredientModal() {
 
     function handleConfirm(event) {
         event.stopPropagation();
-        console.log(ingredient);
-        console.log(selectedDate);
-        controller.hideModal();
+        if(ingredient && ingredient !== null && ingredient.length > 0){
+            user.addIngredient(ingredient, date);
+            setIngredient('');
+            setDate(new Date());
+        }
     }
 
-    function handleCloseModal(event) {
+    function handleCancel(event) {
         event.stopPropagation();
         console.log("close modal")
-        controller.hideModal();
+        user.hideModal();
     }
-
-    // const handleDateSelect = (date) => {
-    //     setSelectedDate(date);
-    // };
 
     return (
         <Modal
-            open={controller && controller.isAddModalOpen}
+            open={user && user.isAddModalOpen}
         >
             <div className='modalContainer'>
                 <div className='modal'>
@@ -43,12 +63,13 @@ export default function AddIngredientModal() {
                         <Typography variant='h4'>Enter ingredient:</Typography>
                         <UserInput placeholder='Ingredient Name' handleUpdate={handleIngredientUpdate} value={ingredient}/>
                     </div>
-                    {/* <div className='container' id='modal-item'>
+                    <div className='container' id='modal-item'>
                         <Typography variant='h4'>Choose purchase date:</Typography>
-                    </div> */}
+                        <DatePicker selected={date} onChange={(date) => setDate(date)} />
+                    </div>
                     <div className='container'>
-                        <Button onClick={handleConfirm}>Confirm</Button>
-                        <Button onClick={handleCloseModal}>Close</Button>
+                        <Button variant='outlined' sx={[ btnTheme.basic, btnTheme.outlined ]} onClick={handleCancel}>Cancel</Button>
+                        <Button variant='contained' sx={[ btnTheme.basic, btnTheme.contained ]} onClick={handleConfirm}>Confirm</Button>
                     </div>
                 </div>
             </div>
