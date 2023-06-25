@@ -35,7 +35,7 @@ const Hero = () => {
                     <Link to="/register" style={{ textDecoration: 'none', color: 'inherit'}}><Button variant='contained' sx={ btnTheme }>Start Now</Button></Link>
                 </div>
                 <div style={{ backgroundColor: 'var(--primary-hover-color)', minWidth: '37.5vw', color: 'white'}}>
-                    going to be a picture
+                    <img src='../assets/food-waste.jpg'/>
                 </div>
             </div>
         </div>
