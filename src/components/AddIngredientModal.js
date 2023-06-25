@@ -3,6 +3,7 @@ import { ControllerContext } from '../controller';
 import UserInput from './UserInput';
 
 import { Modal, Button, Typography, TextField } from '@mui/material';
+import axios from 'axios'
 
 export default function AddIngredientModal() {
     const [ingredient, setIngredient] = useState('');
@@ -16,10 +17,12 @@ export default function AddIngredientModal() {
         setIngredient(event.target.value);
     }
 
-    function handleConfirm(event) {
+    const handleConfirm = async(event)=>{
+        event.preventDefault();
         event.stopPropagation();
         console.log(ingredient);
         console.log(selectedDate);
+        //Post request
         controller.hideModal();
     }
 
@@ -32,6 +35,8 @@ export default function AddIngredientModal() {
     // const handleDateSelect = (date) => {
     //     setSelectedDate(date);
     // };
+
+    
 
     return (
         <Modal
