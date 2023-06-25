@@ -62,7 +62,7 @@ const Register = () => {
             <Typography variant='h1' fontWeight="bold" sx={fontTheme}>Login</Typography>
             <div>
                 <div className="columnContainer">
-                    <UserInput placeholder='Email/ UserName' handleUpdate={handleemailOrUserNameUpdate} value={emailOrUserName} />
+                    <UserInput placeholder='Email/ UserName' handleUpdate={handleEmailOrUserNameUpdate} value={emailOrUserName} />
                     <UserInput placeholder='Password' handleUpdate={handlePasswordUpdate} value={password} />
 
                     <div style={ {width: '30vw', marginTop: "2.5%" }}>
