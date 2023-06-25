@@ -40,10 +40,12 @@ const Ingredients = () => {
                     </div>
             </div>
             
-            <div className='ingredientRow'>
-                <span className='ingredientName'>Ingredient name</span>
-                <Button className='deleteIngredient'>Delete</Button>
-            </div>
+            <div className='ingredientRows'>  
+                <div className='ingredientRow'>
+                    <span className='ingredientName'>Ingredient name</span>
+                    <Button className='deleteIngredient'>Delete</Button>
+                </div>
+            </div> 
         </div>
     )
 }
