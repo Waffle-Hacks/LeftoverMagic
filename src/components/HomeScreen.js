@@ -20,8 +20,7 @@ const HomeScreen = () => {
     let content = '';
     if(auth && auth.user && auth.loggedIn){
         content = <div className='subContainer'>
-            Hello
-            {/* <Ingredients/> */}
+            <Ingredients/>
         </div>
     }
     else{
