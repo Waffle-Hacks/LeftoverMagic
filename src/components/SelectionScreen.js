@@ -2,15 +2,23 @@ import { AuthContext } from '../auth';
 import { UserContext } from '../user';
 import CheckBox from './CheckBox';
 
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Typography, Button } from '@mui/material';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const SelectionScreen = () => {
     const { auth } = useContext(AuthContext);
     const { user } = useContext(UserContext);
 
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
+    const [doneSearch, setDone] = useState(false);
+
+    useEffect(() => {
+        if(user && user.recipes !== null && user.recipes !== [] && doneSearch){
+            setDone(false);
+            navigate('/result');
+        }
+    }, [user && user.recipes]);
 
     const fontTheme = {
         color: 'var(--primary-color)',
@@ -38,6 +46,7 @@ const SelectionScreen = () => {
         if(user){
             console.log(user.chosenIngredients)
             user.searchRecipe();
+            setDone(true);
         }
     }
 
@@ -46,6 +55,11 @@ const SelectionScreen = () => {
         if(user){
             user.clearSelection();
         }
+    }
+
+    function handleInventory(event) {
+        event.stopPropagation();
+        navigate('/');
     }
 
     let displayInventory = '';
@@ -74,8 +88,9 @@ const SelectionScreen = () => {
                 </div>
                 { displayInventory }
                 <div className='container' style={{ marginTop:'5%', alignSelf: 'flex-end', width:'70vw'}}>
+                    <Button variant='outlined' sx={btnTheme} onClick={handleInventory}>Update ingredients</Button>
                     <Button variant='outlined' sx={btnTheme} onClick={handleClear}>Clear</Button>
-                    <Button disabled={user && user.chosenIngredients !== null && user.chosenIngredients !== []} variant='outlined' sx={btnTheme} onClick={handleSubmit}>Generate recipes →</Button>
+                    <Button variant='outlined' sx={btnTheme} onClick={handleSubmit}>Generate recipes →</Button>
                 </div>
             </div>
         </div>

@@ -24,7 +24,7 @@ const CheckBox = (props) => {
 
     return <div className='container' id='checkbox-container'>
         <Checkbox
-            checked={user && user.chosen(name)}
+            checked={checked && user.chosen(name)}
             onChange={handleChange}
             inputProps={{ 'aria-label': 'controlled' }}
             sx={{ '& .MuiSvgIcon-root': { fontSize: 75 } }}

@@ -33,13 +33,14 @@ const RecipeScreen = () => {
     }
 
     let recipes = '';
-    if(user & user.recipes){
+    if(user){
         recipes = user.recipes.map(recipe => (
             <Recipe
                 key={recipe.recipe.image} title={recipe.recipe.label}
                 calories={recipe.recipe.calories} image = {recipe.recipe.image}
                 ingredients = {recipe.recipe.ingredients}
                 mealType={recipe.recipe.mealType}
+                cuisineType={recipe.recipe.cuisineType}
             />
         ))
     }
@@ -68,8 +69,9 @@ const RecipeScreen = () => {
                 <div className='recipes'>
                     {recipes}
                 </div>
-                <div className='container' style={{ marginTop:'5%', alignSelf: 'flex-end', width:'70vw'}}>
+                <div className='container' style={{ marginTop:'5%', alignSelf: 'flex-end', width:'90vw'}}>
                     <Button variant='outlined' sx={btnTheme} onClick={handleSelection}>← Generate more recipes</Button>
+                    <Button variant='outlined' sx={btnTheme}>Bookmark</Button>
                     <Button variant='outlined' sx={btnTheme} onClick={handleInventory}>Manage item inventory</Button>
                 </div>
             </div>

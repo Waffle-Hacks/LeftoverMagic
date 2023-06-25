@@ -58,9 +58,9 @@ const NavBar = () => {
 
     function handleRecipes(event) {
         event.stopPropagation();
-        if(user){
-            user.clearSelection();
-        }
+        // if(user){
+        //     user.clearSelection();
+        // }
         navigate('/selection');
     }
 

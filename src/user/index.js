@@ -72,6 +72,7 @@ function UserContextProvider(props) {
             case UserActionType.UPDATE_RECIPES: {
                 return setUser(prevUser => ({
                     ...prevUser,
+                    chosenIngredients: [],
                     recipes: payload
                 }));
             }
@@ -187,24 +188,21 @@ function UserContextProvider(props) {
 
     user.select = async function(ingredient){
         try{
-            console.log('user.select');
-            console.log(ingredient);
+            if(user.chosenIngredients !== null){
+                console.log('user.select');
+                console.log(ingredient);
+                console.log(user.chosenIngredients);
 
-            var newList = user.chosenIngredients.splice();
-            console.log(newList);
+                if(!user.chosenIngredients.includes(ingredient)){
+                    console.log('shud add');
+                    console.log([...user.chosenIngredients, ingredient]);
 
-            if(!newList.includes(ingredient)){
-                console.log('shud add');
-                newList.push(ingredient);
-                console.log(newList);
+                    userReducer({
+                        type: UserActionType.CHOOSE_INGREDIENT,
+                        payload: [...user.chosenIngredients, ingredient]
+                    });
+                }
             }
-
-            console.log(newList);
-
-            userReducer({
-                type: UserActionType.CHOOSE_INGREDIENT,
-                payload: newList
-            });
         }
         catch(err){
             if(err && err.response){
@@ -214,25 +212,20 @@ function UserContextProvider(props) {
         }
     }
 
-    user.deselect = async function(ingredient){
+    user.deselect = async function(given_ingredient){
         try{
-            console.log('user.deselect');
-            console.log(ingredient);
+            if(user.chosenIngredients !== null){
+                console.log('user.deselect');
+                console.log(given_ingredient);
+                console.log(user.chosenIngredients);
 
-            var newList = user.chosenIngredients.splice();
-            console.log(newList);
-
-            if(newList.includes(ingredient)){
-                console.log('shud remove')
-                newList = newList.filter(ingredient => ingredient !== ingredient);
+                if(user.chosenIngredients.includes(given_ingredient)){
+                    userReducer({
+                        type: UserActionType.CHOOSE_INGREDIENT,
+                        payload: user.chosenIngredients.filter(ingredient => ingredient !== given_ingredient)
+                    });
+                }
             }
-
-            console.log(newList);
-
-            userReducer({
-                type: UserActionType.CHOOSE_INGREDIENT,
-                payload: newList
-            });
         }
         catch(err){
             if(err && err.response){
