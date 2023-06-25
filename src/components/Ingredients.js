@@ -40,9 +40,15 @@ const Ingredients = () => {
                     </div>
             </div>
             
-            <div className='ingredientRow'>
-                <span className='ingredientName'>Ingredient name</span>
-                <Button className='deleteIngredient'>Delete</Button>
+            <div className='ingredientRows'>  
+                <div className='ingredientRow'>
+                    <span className='ingredientName'>Ingredient name</span>
+                    <Button className='deleteIngredient'>Delete</Button>
+                </div>
+            </div>
+            <div className='generaterBtn'>
+                {/* generateRecipe button clicked brings you to recipe page */}
+                <Button className='generateRecipe' variant='contained' sx={[ btnTheme.basic, btnTheme.contained ]}>Generate Recipe</Button>
             </div>
         </div>
     )

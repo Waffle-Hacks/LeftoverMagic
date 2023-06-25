@@ -7,7 +7,7 @@ mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true })
         console.log('Connected to MongoDB');
     })
     .catch(e => {
-        console.error('MongoDB connection error', e.message)
+        console.error('MongoDB connection error:', e.message)
     })
 
 const db = mongoose.connection
