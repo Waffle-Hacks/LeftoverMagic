@@ -6,7 +6,7 @@ const UserSchema = new Schema(
         userName: { type: String, required: true },
         email: { type: String, required: true },
         passwordHash: { type: String, required: true },
-        invetory: [ { type: String } ]
+        inventory: [ { type: String } ]
     },
     { timestamps: true },
 )

@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 
 import serverSide from './server_request'
@@ -36,6 +36,30 @@ function AuthContextProvider(props) {
             }
             default:
                 return auth;
+        }
+    }
+
+    useEffect(() => {
+        auth.stayLoggedIn();
+    }, []);
+
+    auth.stayLoggedIn = async function () {
+        try{
+            const response = await serverSide.stayLoggedIn();
+            if (response.status === 200) {
+                authReducer({
+                    type: AuthActionType.LOGIN_USER,
+                    payload: {
+                        user: response.data.user
+                    }
+                });
+            }
+        }
+        catch(err){
+            if(err && err.response){
+                const errMsg = err.response.data.errorMessage;
+                alert(`Error: ${errMsg}`);
+            }
         }
     }
 

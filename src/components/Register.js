@@ -1,11 +1,13 @@
 import React, { useState, useContext } from "react";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Typography, TextField, Button } from "@mui/material";
 
 import { AuthContext } from '../auth';
 import UserInput from './UserInput';
+import HomeScreen from './HomeScreen';
 
 const Register = () => {
+    const navigate = useNavigate();
     const { auth } = useContext(AuthContext);
 
     const fontTheme = {
@@ -69,31 +71,37 @@ const Register = () => {
             setConfirmPassword('');
         }
     }
-    
-    return(
-        <div className="subContainer" style={{height: '100vh', justifyContent: 'flex-start'}}>
-            <Typography variant='h1' fontWeight="bold" sx={fontTheme}>Register</Typography>
-            <div>
-                <div className="columnContainer">
-                    <UserInput placeholder='Username' handleUpdate={handleUsernameUpdate} value={username} />
-                    <UserInput placeholder='Email' handleUpdate={handleEmailUpdate} value={email} />
-                    <UserInput placeholder='Password' handleUpdate={handlePasswordUpdate} value={password} />
-                    <UserInput placeholder='Confirm password' handleUpdate={handleConfirmPasswordUpdate} value={confirmPassword} />
-                    
-                    <div style={ {width: '30vw', marginTop: "2.5%" }}>
-                        <span style={{ marginRight: "2.5%" }}>
-                            Already have an account?
-                        </span>
-                        <Link to="/login" variant="body2">
-                            Login Here
-                        </Link>
-                    </div>
-                </div>
 
-                <Button variant='contained' sx={ btnTheme } onClick={handleSubmit}>Register</Button>
+    if (auth.user){
+        navigate('/');
+        return <HomeScreen/>
+    }
+    else{
+        return(
+            <div className="subContainer" style={{height: '100vh', justifyContent: 'flex-start'}}>
+                <Typography variant='h1' fontWeight="bold" sx={fontTheme}>Register</Typography>
+                <div>
+                    <div className="columnContainer">
+                        <UserInput placeholder='Username' handleUpdate={handleUsernameUpdate} value={username} />
+                        <UserInput placeholder='Email' handleUpdate={handleEmailUpdate} value={email} />
+                        <UserInput placeholder='Password' handleUpdate={handlePasswordUpdate} value={password} />
+                        <UserInput placeholder='Confirm password' handleUpdate={handleConfirmPasswordUpdate} value={confirmPassword} />
+                        
+                        <div style={ {width: '30vw', marginTop: "2.5%" }}>
+                            <span style={{ marginRight: "2.5%" }}>
+                                Already have an account?
+                            </span>
+                            <Link to="/login" variant="body2">
+                                Login Here
+                            </Link>
+                        </div>
+                    </div>
+    
+                    <Button variant='contained' sx={ btnTheme } onClick={handleSubmit}>Register</Button>
+                </div>
             </div>
-        </div>
-    )
+        )
+    }
 }
 
 export default Register;

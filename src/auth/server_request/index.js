@@ -23,14 +23,15 @@ export const loginUser = (emailOrPw, password) => {
     })
 }
 
-export const logoutUser = () => {
-    return serverSide.get(`/logout/`)
-}
+export const logoutUser = () => serverSide.get(`/logout/`);
+
+export const stayLoggedIn = () => serverSide.get(`/loggedIn/`);
 
 const server = {
     registerUser,
     loginUser,
     logoutUser,
+    stayLoggedIn
 }
 
 export default server

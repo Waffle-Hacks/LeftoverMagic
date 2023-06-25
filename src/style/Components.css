@@ -62,17 +62,15 @@
 
 }
 
-.ingredientHeader{
+#ingredientHeader{
     display: flex;
     justify-content: space-between;
     flex-direction: row;
-    align-items: flex-start;
+    margin-top: 2.5vh;
 }
 
 .ingredientTitle{
-    width: 30%;
-    margin-right: auto;
-    margin: 20px 5px;
+    width: 50vw;
 }
 
 .ingredientRow{
@@ -85,6 +83,12 @@
 }
 
 .ingredientRows{
-    margin-left: 40px;
-    margin-top: 20px;
+    margin-top: 2.5vh;
+}
+
+#emptyInventory{
+    margin: 3vh 7.5vw;
+    padding: 3vh 2.5vw;
+    align-self: flex-start;
+    border-left: 5px solid var(--primary-color);
 }

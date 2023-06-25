@@ -2,6 +2,35 @@ const auth = require('../auth')
 const User = require('../schema/user')
 const bcrypt = require('bcryptjs')
 
+stayLoggedIn = async (req, res) => {
+    try {
+        let userId = auth.verifyUser(req);
+        if (!userId) {
+            console.log("userId does not exist");
+            return res.status(200).json({
+                loggedIn: false,
+                user: null,
+                errorMessage: "?"
+            })
+        }
+
+        const loggedInUser = await User.findOne({ _id: userId });
+
+        return res.status(200).json({
+            loggedIn: true,
+            user: {
+                userName: loggedInUser.userName,
+                firstName: loggedInUser.firstName,
+                lastName: loggedInUser.lastName,
+                email: loggedInUser.email
+            }
+        })
+    } catch (err) {
+        console.log("err: " + err);
+        res.json(false);
+    }
+}
+
 registerUser = async (req, res) => {
     console.log("registerUser");
     try {
@@ -115,7 +144,7 @@ loginUser = async (req, res) => {
         }
 
         const existingEmailUser = await User.findOne({ email: emailOrPw });
-        const existingUser = await User.findOne({ username: emailOrPw });
+        const existingUser = await User.findOne({ userName: emailOrPw });
 
         if(!existingEmailUser && !existingUser){
             return res
@@ -199,40 +228,8 @@ logoutUser = async (req, res) => {
     }).send();
 }
 
-// getLoggedIn = async (req, res) => {
-//     console.log("getLoggedIn");
-//     if(req && req.body)
-//         console.log(req.body);
-//     try {
-//         let userId = auth.verifyUser(req);
-//         if (!userId) {
-//             console.log("userId does not exist");
-//             return res.status(200).json({
-//                 loggedIn: false,
-//                 user: null,
-//                 errorMessage: "?"
-//             })
-//         }
-
-//         const loggedInUser = await User.findOne({ _id: userId });
-//         console.log("loggedInUser: " + loggedInUser);
-
-//         return res.status(200).json({
-//             loggedIn: true,
-//             user: {
-//                 userName: loggedInUser.userName,
-//                 firstName: loggedInUser.firstName,
-//                 lastName: loggedInUser.lastName,
-//                 email: loggedInUser.email
-//             }
-//         })
-//     } catch (err) {
-//         console.log("err: " + err);
-//         res.json(false);
-//     }
-// }
-
 module.exports = {
+    stayLoggedIn,
     registerUser,
     loginUser,
     logoutUser

@@ -49,6 +49,16 @@ const NavBar = () => {
         navigate('/login');
     }
 
+    function handleInventory(event) {
+        event.stopPropagation();
+        navigate('/');
+    }
+
+    function handleRecipes(event) {
+        event.stopPropagation();
+        navigate('/selection');
+    }
+
     function handleLogout(event){
         event.stopPropagation();
         if(auth){
@@ -60,7 +70,11 @@ const NavBar = () => {
     let btnGrp = '';
 
     if(auth && auth.user && auth.loggedIn){
-        btnGrp = <Button variant='outlined' sx={[ btnTheme.basic, btnTheme.outlined ]} onClick={handleLogout}>Logout</Button>;
+        btnGrp = <>
+            <Button variant='outlined' sx={[ btnTheme.basic, btnTheme.outlined ]} onClick={handleInventory}>Manage Ingredients</Button>;
+            <Button variant='outlined' sx={[ btnTheme.basic, btnTheme.outlined ]} onClick={handleRecipes}>Recipe</Button>;
+            <Button variant='outlined' sx={[ btnTheme.basic, btnTheme.outlined ]} onClick={handleLogout}>Logout</Button>;
+        </>
     }
     else{
         btnGrp = <>
