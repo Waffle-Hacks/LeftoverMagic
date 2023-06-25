@@ -27,12 +27,12 @@ const Register = () => {
         }
     }
 
-    const [emailOrPw, setEmailOrPw] = useState("");
+    const [emailOrUserName, setEmailOrUserName] = useState("");
     const [password, setPassword] = useState("");
 
-    function handleEmailOrPwUpdate(event){
+    function handleEmailOrUserNameUpdate(event){
         event.stopPropagation();
-        setEmailOrPw(event.target.value);
+        setEmailOrUserName(event.target.value);
     }
 
     function handlePasswordUpdate(event){
@@ -42,17 +42,17 @@ const Register = () => {
 
     const handleSubmit = (event) => {
         event.stopPropagation();
-        if(emailOrPw.length === 0 || password.length === 0){
+        if(emailOrUserName.length === 0 || password.length === 0){
             alert('Warning: cannot leave textfield empty.');
         }
 
         if(auth){
             console.log('now login user');
             auth.loginUser(
-                emailOrPw,
+                emailOrUserName,
                 password
             );
-            setEmailOrPw('');
+            setEmailOrUserName('');
             setPassword('');
         }
     }
@@ -62,7 +62,7 @@ const Register = () => {
             <Typography variant='h1' fontWeight="bold" sx={fontTheme}>Login</Typography>
             <div>
                 <div className="columnContainer">
-                    <UserInput placeholder='Email' handleUpdate={handleEmailOrPwUpdate} value={emailOrPw} />
+                    <UserInput placeholder='Email/ UserName' handleUpdate={handleemailOrUserNameUpdate} value={emailOrUserName} />
                     <UserInput placeholder='Password' handleUpdate={handlePasswordUpdate} value={password} />
 
                     <div style={ {width: '30vw', marginTop: "2.5%" }}>
