@@ -1,11 +1,15 @@
 import { AuthContext } from '../auth';
+import { ControllerContext } from '../controller';
 import Ingredient from './Ingredient';
+import AddIngredientModal from './AddIngredientModal';
 
 import React, { useContext, useState } from 'react';
-import { Typography, Button} from '@mui/material';
+import { Typography, Button } from '@mui/material';
 
 const Inventory = () => {
     const { auth } = useContext(AuthContext);
+    const { controller } = useContext(ControllerContext);
+
     const [ingredients, setIngredients] = useState(auth.user.inventory ? (auth && auth.user && auth.user.inventory) : []);
 
     let user = auth.user.userName ? (auth && auth.user && auth.user.userName) : 'user';
@@ -55,6 +59,11 @@ const Inventory = () => {
         generateRecipeBtn = '';
     }
 
+    function handleAddIngredient(event){
+        event.stopPropagation();
+        controller.openAddModal();
+    }
+
     return(
         <div className='homeContainer'>
             <div className='subContainer' style={{ height: '100vh', justifyContent: 'flex-start' }}>
@@ -63,7 +72,7 @@ const Inventory = () => {
                             <Typography variant='h4' fontWeight="bold" sx={fontTheme}>Hi {user}, manage your ingredients inventory here!</Typography>
                         </div>
                         <div className='headerBtn'>
-                            <Button variant='contained' sx={[ btnTheme.basic, btnTheme.contained ]}>Add Ingredients</Button>
+                            <Button variant='contained' sx={[ btnTheme.basic, btnTheme.contained ]} onClick={handleAddIngredient}>Add Ingredients</Button>
                             <Button variant='contained' sx={[ btnTheme.basic, btnTheme.contained ]}>Undo</Button>
                             <Button variant='contained' sx={[ btnTheme.basic, btnTheme.contained ]}>Redo</Button>
                             <Button variant='contained' sx={[ btnTheme.basic, btnTheme.contained ]}>Sort By</Button>
@@ -71,6 +80,7 @@ const Inventory = () => {
                         { generateRecipeBtn }
                 </div>
                 { displayInventory }
+                <AddIngredientModal/>
             </div>
         </div>
     )
