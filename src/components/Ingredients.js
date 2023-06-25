@@ -47,4 +47,5 @@ const Ingredients = () => {
         </div>
     )
 }
+
 export default Ingredients;
